@@ -18,6 +18,17 @@ theme = "tailwind"
     since = 2023
     poweredby = true
 
+  [params.giscus]
+	enabled = true
+	repo = "davis243/davidsarmiento.dev"
+	repoId = "R_kgDOGzJrfg"
+	category = "Articles"
+	mapping = "og:title"
+	reactionsEnabled = "1"
+	emitMetadata = "0"
+	theme = "light"
+	lang = "en"
+
 [menu]
 
   [[menu.main]]
@@ -36,3 +47,9 @@ theme = "tailwind"
 category = "categories"
 tag = "tags"
 series = "series"
+
+
+############################
+## Comments
+############################
+
