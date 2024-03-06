@@ -9,4 +9,4 @@ authors: []
 
 [Second Note](Second%20Note.md)
 
-![](../assets/Pasted%20image%2020240304094352.png)
+![](Pasted%20image%2020240304094352.png)
