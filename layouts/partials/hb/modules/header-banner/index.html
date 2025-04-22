@@ -1,0 +1,79 @@
+{{- $params := default site.Params.hb.header.banner .Params.header.banner }}
+{{ if not (or (eq .Section "blog") (eq .Kind "page" ) ) }}
+    {{- if or $params.img $params.video }}
+    {{- $sources := slice }}
+    {{- $img := "" }}
+    {{- if reflect.IsSlice $params.img }}
+        {{- range .img }}
+        {{- if .media }}
+            {{- $sources = $sources | append . }}
+        {{- else }}
+            {{- $img = .src | relURL }}
+        {{- end }}
+        {{- end }}
+    {{- else if $params.img }}
+        {{- $img = relURL $params.img }}
+        {{- $res := false }}
+        {{- with $.Resources.GetMatch $params.img }}
+        {{- $res = . }}
+        {{- $img = .RelPermalink }}
+        {{- else }}
+        {{- with resources.GetMatch $params.img }}
+            {{- $res = . }}
+            {{- $img = .RelPermalink }}
+        {{- end }}
+        {{- end }}
+        {{- if and $res (ne $res.MediaType.SubType "svg") }}
+        {{- $format := cond (eq $res.MediaType.SubType "webp") "%dx" "%dx webp" }}
+        {{- $sizes := slice
+            (dict "width" 1400 "minWidth" 992)
+            (dict "width" 992 "minWidth" 768)
+            (dict "width" 768 "minWidth" 480)
+            (dict "width" 480 "minWidth" 320)
+        }}
+        {{- range $sizes }}
+            {{- $resized := $res.Resize (printf $format .width) }}
+            {{- $sources = $sources | append (dict
+            "src" $resized.RelPermalink
+            "media" (printf "(min-width: %dpx)" .minWidth)
+            "type" $resized.MediaType)
+            }}
+        {{- end }}
+        {{- end }}
+    {{- end }}
+    <style>
+        .hb-header {
+        height: 100vh;
+        }
+        {{ with $params.color }}
+        .hb-header-banner {
+        --{{ site.Params.hb.styles.prefix }}header-banner-color: {{ . }};
+        }
+        {{ end }}
+    </style>
+    {{- if $img }}
+        <picture>
+        {{- range $sources }}
+            <source
+            srcset="{{ .src }}"
+            media="{{ .media }}"
+            {{ with .type }}type="{{ . }}"{{ end }}/>
+        {{- end }}
+        <img
+            class="img-fluid hb-header-banner-img d-block w-100 position-absolute top-0"
+            onload="document.querySelector('.hb-header').classList.add('hb-header-banner')"
+            alt="{{ $.Title }}"
+            src="{{ $img }}" />
+        </picture>
+    {{- end }}
+    {{- with $params.video }}
+        {{ partial "hb/modules/header-banner/video" . }}
+    {{- end }}
+    {{- if not (and
+        (eq $params.title false)
+        (eq $params.description false))
+    }}
+        {{ partial "hb/modules/header-banner/body" $params }}
+    {{- end }}
+    {{- end }}
+{{ end }}

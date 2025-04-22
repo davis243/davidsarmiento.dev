@@ -1,0 +1,7 @@
+<p class="md__image">
+	{{ if .Title }}
+	<img src="{{ .Destination  }}" alt="{{ .Text }}">
+	{{ else }}
+	<img src="../{{ .Destination }}" alt="{{ .Text }}">
+	{{ end }}
+  </p>
