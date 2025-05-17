@@ -4,6 +4,7 @@ hb:
   # js_bundle_name: main # the JS bundle name.
   # css_bundle_name: main # the CSS bundle name.
   full_width: false # when true, the layout takes full width globally.
+  color: light
   header:
     banner:
       title: David Sarmiento Patron
@@ -14,18 +15,20 @@ hb:
     logo_bg: '#712cf9' # logo background color, used by logo with transparent background.
     # see https://hbstack.dev/en/docs/modules/socials/.
     socials:
-      github: hbstack
-      # twitter: razonyang
+      github: davis243
+      twitter: davis_sarmi
       rss: true
-      mastodon: https://techhub.social/@hbstack
+      linkedin: david-sarmiento-patron
+      #mastodon: https://techhub.social/@hbstack
   footer:
     # see https://hbstack.dev/en/docs/modules/socials/.
     socials:
       _color: true # when false, remove the color of social icons.
-      github: hbstack
-      twitter: razonyang
+      github: davis243
+      twitter: davis_sarmi
+      linkedin: david-sarmiento-patron
       rss: true
-      mastodon: https://techhub.social/@hbstack
+      #mastodon: https://techhub.social/@hbstack
   blog:
     list_cols_md: 2
     list_cols_lg: 3
@@ -35,9 +38,9 @@ hb:
       alignment: center
       media:
         - twitter
-        - facebook
+     #   - facebook
         - linkedin
-        - sinaweibo
+     #   - sinaweibo
     sidebar:
       sticky: true # set it to false to not stick the sidebar.
       width: .35 # the width of sidebar.
@@ -46,12 +49,13 @@ hb:
         # title: Profile title other than site title.
         # description: Profile description other than site description.
         avatar_size: 100
-        company: COMPANY
-        location: Earth
+        company: "@rappi"
+        location: Peru
         socials:
-          github: hbstack
-          mastodon: https://techhub.social/@hbstack
-          rss: true
+          github: davis243
+          #mastodon: https://techhub.social/@hbstack
+          linkedin: david-sarmiento-patron
+          #rss: true
       posts:
         recent_count: 5 # the number of recent posts.
         featured_count: 5 # the number of featured posts.
@@ -91,14 +95,14 @@ hb:
         - blog
         - news
     giscus:
-      repo: hbstack/theme-cards
-      repo_id: R_kgDOK1LmSQ
-      category_id: DIC_kwDOK1LmSc4CbdiM
+      repo: davis243/davidsarmiento.dev
+      repo_id: R_kgDOOd_j8Q
+      category_id: DIC_kwDOOd_j8c4Cp2jO
   docs:
     giscus:
-      repo: hbstack/theme-cards
-      repo_id: R_kgDOK1LmSQ
-      category_id: DIC_kwDOK1LmSc4CbdiM
+      repo: davis243/davidsarmiento.dev
+      repo_id: R_kgDOOd_j8Q
+      category_id: DIC_kwDOOd_j8c4Cp2jO
     social_share_buttons:
       alignment: center
       media:
@@ -163,3 +167,5 @@ hugopress:
       hooks:
         hb-blog-sidebar:
           weight: 2
+code_block_panel:
+    max_lines: 1000
