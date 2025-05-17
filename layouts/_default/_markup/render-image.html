@@ -1,7 +1,14 @@
-<p class="md__image">
-	{{ if .Title }}
-	<img src="{{ .Destination  }}" alt="{{ .Text }}">
-	{{ else }}
-	<img src="../{{ .Destination }}" alt="{{ .Text }}">
-	{{ end }}
-  </p>
+{{ $url := urls.Parse .Destination }}
+<style>img[src$='#center'] {
+    display: block;
+    margin: 1.0rem auto;
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+{{ if or (eq $url.IsAbs true) (hasPrefix .Destination "/") }}
+    <img src="{{ .Destination }}" title="{{ .Title }}" alt="{{ .Title }}"/>
+{{ else }}
+{{ $folder := path.Base .Page.File.Dir }}
+    <img src="{{ .Page.Permalink }}{{ .Destination }}" title="{{ .Title }}" alt="{{ .Title }}"/>
+{{ end }}
